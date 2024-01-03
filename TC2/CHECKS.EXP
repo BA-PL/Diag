@@ -1,0 +1,348 @@
+
+
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @PATH := '\/Checks' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+(************************************************************************************************************************)
+(*							Beckhoff Automation Poland											*)
+(*								CheckBounds	 v1.1											*)
+(*									23.07.2015													*)
+(* 							v 1.1 - poprawki edycyjne 											*)
+(*					Funkcja sprawdzaj¹ca czy zmienna nie przekracza indexu tablicy				*)
+(*					Zapobiega tej sytuacji zmieniajac index na min lub max						*)
+(*					Liczba przekroczen w zmiennej dCheckBounds w Global\Checks....			*)
+(*					Nie nale¿y jej wywo³ywaæ w programie, wykonuje sie w tle					*)
+(*					Uwaga!!!																	*)
+(*					Obciaza system, uzywac tylko w okresie testowania							*)
+(*_______________________________________________________________________________*)
+FUNCTION CheckBounds: DINT
+VAR_INPUT
+	index, lower, upper : DINT;
+END_VAR
+(* @END_DECLARATION := '0' *)
+IF index<lower THEN
+	CheckBounds := lower;(**)
+	dCheckBounds := dCheckBounds + 1;
+ELSIF index>upper THEN
+	CheckBounds := upper;(**)
+	dCheckBounds := dCheckBounds + 1;
+ELSE
+	CheckBounds := index;
+END_IF
+END_FUNCTION
+
+
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @PATH := '\/Checks' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+(************************************************************************************************************************)
+(*							Beckhoff Automation Poland											*)
+(*								CheckDivByte	 	 v1.1										*)
+(*									23.07.2015													*)
+(* 							v 1.1 - poprawki edycyjne 											*)
+(*					Funkcja sprawdzaj¹ca dzielenie zmiennej BYTE przez 0						*)
+(*					Zapobiega tej sytuacji zmieniajac dzielnik na 1								*)
+(*					Liczba prob w zmiennej dCheckDivByte w Global\Checks....					*)
+(*					Nie nale¿y jej wywo³ywaæ w programie, wykonuje sie w tle					*)
+(*					Uwaga!!!																	*)
+(*					Obciaza system, uzywac tylko w okresie testowania							*)
+(*_______________________________________________________________________________*)
+FUNCTION CheckDivByte: BYTE
+VAR_INPUT
+	divisor : BYTE;
+END_VAR
+(* @END_DECLARATION := '0' *)
+IF divisor = 0 THEN
+	CheckDivByte := 1;(**)
+	dCheckDivByte := dCheckDivByte + 1;
+ELSE
+	CheckDivByte := divisor;
+END_IF
+END_FUNCTION
+
+
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @PATH := '\/Checks' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+(************************************************************************************************************************)
+(*							Beckhoff Automation Poland											*)
+(*								CheckDivDINT	 	 v1.1										*)
+(*									23.07.2015													*)
+(* 							v 1.1 - poprawki edycyjne 											*)
+(*					Funkcja sprawdzaj¹ca dzielenie zmiennej DINT przez 0						*)
+(*					Zapobiega tej sytuacji zmieniajac dzielnik na 1								*)
+(*					Liczba prob w zmiennej dCheckDivDInt w Global\Checks....					*)
+(*					Nie nale¿y jej wywo³ywaæ w programie, wykonuje sie w tle					*)
+(*					Uwaga!!!																	*)
+(*					Obciaza system, uzywac tylko w okresie testowania							*)
+(*_______________________________________________________________________________*)
+FUNCTION CheckDivDINT : DINT
+VAR_INPUT
+	divisor		 		: DINT;
+END_VAR
+VAR
+END_VAR
+
+(* @END_DECLARATION := '0' *)
+IF divisor = 0 THEN
+	dCheckDivDInt := dCheckDivDInt + 1;
+	CheckDivDINT := 1;(**)
+ELSE
+	CheckDivDINT := divisor;
+END_IF
+END_FUNCTION
+
+
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @PATH := '\/Checks' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+(************************************************************************************************************************)
+(*							Beckhoff Automation Poland											*)
+(*								CheckDivDWord	 	 v1.1										*)
+(*									23.07.2015													*)
+(* 							v 1.1 - poprawki edycyjne 											*)
+(*							Beckhoff Automation Poland											*)
+(*								CheckDivDWord	 v1.0											*)
+(*									30.05.2008													*)
+(*					Funkcja sprawdzaj¹ca dzielenie zmiennej DWORD przez 0					*)
+(*					Zapobiega tej sytuacji zmieniajac dzielnik na 1								*)
+(*					Liczba prob w zmiennej dCheckDivDWord w Global\Checks....					*)
+(*					Nie nale¿y jej wywo³ywaæ w programie, wykonuje sie w tle					*)
+(*					Uwaga!!!																	*)
+(*					Obciaza system, uzywac tylko w okresie testowania							*)
+(*_______________________________________________________________________________*)
+FUNCTION CheckDivDWord: DWORD
+VAR_INPUT
+	divisor : DWORD;
+END_VAR
+(* @END_DECLARATION := '0' *)
+IF divisor = 0 THEN
+	CheckDivDWord := 1;(**)
+	dCheckDivDWord := dCheckDivDWord + 1;
+ELSE
+	CheckDivDWord := divisor;
+END_IF
+END_FUNCTION
+
+
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @PATH := '\/Checks' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+(************************************************************************************************************************)
+(*							Beckhoff Automation Poland											*)
+(*								CheckDivINT	 	 v1.1										*)
+(*									23.07.2015													*)
+(* 							v 1.1 - poprawki edycyjne 											*)
+(*					Funkcja sprawdzaj¹ca dzielenie zmiennej INT przez 0							*)
+(*					Zapobiega tej sytuacji zmieniajac dzielnik na 1								*)
+(*					Liczba prob w zmiennej dCheckDivInt w Global\Checks....						*)
+(*					Nie nale¿y jej wywo³ywaæ w programie, wykonuje sie w tle					*)
+(*					Uwaga!!!																	*)
+(*					Obciaza system, uzywac tylko w okresie testowania							*)
+(*_______________________________________________________________________________*)
+FUNCTION CheckDivINT : INT
+VAR_INPUT
+	divisor		 		: INT;
+END_VAR
+VAR
+END_VAR
+
+(* @END_DECLARATION := '0' *)
+IF divisor = 0 THEN
+	dCheckDivInt := dCheckDivInt + 1;
+	CheckDivINT := 1;(**)
+ELSE
+	CheckDivINT := divisor;
+END_IF
+END_FUNCTION
+
+
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @PATH := '\/Checks' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+(************************************************************************************************************************)
+(*							Beckhoff Automation Poland											*)
+(*								CheckDivLReal	 	 v1.1										*)
+(*									23.07.2015													*)
+(* 							v 1.1 - poprawki edycyjne 											*)
+(*					Funkcja sprawdzaj¹ca dzielenie zmiennej LREAL przez 0						*)
+(*					Zapobiega tej sytuacji zmieniajac dzielnik na 1								*)
+(*					Liczba prob w zmiennej dCheckDivLReal w Global\Checks....					*)
+(*					Nie nale¿y jej wywo³ywaæ w programie, wykonuje sie w tle					*)
+(*					Uwaga!!!																	*)
+(*					Obciaza system, uzywac tylko w okresie testowania							*)
+(*_______________________________________________________________________________*)
+FUNCTION CheckDivLReal : LREAL
+VAR_INPUT
+	divisor		 		: LREAL;
+END_VAR
+VAR
+END_VAR
+
+(* @END_DECLARATION := '0' *)
+IF divisor = 0 THEN
+	dCheckDivLReal := dCheckDivLReal + 1;
+	CheckDivLReal := 1;(**)
+ELSE
+	CheckDivLReal := divisor;
+END_IF
+END_FUNCTION
+
+
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @PATH := '\/Checks' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+(************************************************************************************************************************)
+(*							Beckhoff Automation Poland											*)
+(*								CheckDivReal	 	 v1.1										*)
+(*									23.07.2015													*)
+(* 							v 1.1 - poprawki edycyjne 											*)
+(*					Funkcja sprawdzaj¹ca dzielenie zmiennej REAL przez 0						*)
+(*					Zapobiega tej sytuacji zmieniajac dzielnik na 1								*)
+(*					Liczba prob w zmiennej dCheckDivReal w Global\Checks....					*)
+(*					Nie nale¿y jej wywo³ywaæ w programie, wykonuje sie w tle					*)
+(*					Uwaga!!!																	*)
+(*					Obciaza system, uzywac tylko w okresie testowania							*)
+(*_______________________________________________________________________________*)
+FUNCTION CheckDivReal: REAL
+VAR_INPUT
+	divisor : REAL;
+END_VAR
+(* @END_DECLARATION := '0' *)
+IF divisor = 0 THEN
+	CheckDivReal := 1;(**)
+	dCheckDivReal := dCheckDivReal + 1;
+ELSE
+	CheckDivReal := divisor;
+END_IF
+END_FUNCTION
+
+
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @PATH := '\/Checks' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+(************************************************************************************************************************)
+(*							Beckhoff Automation Poland											*)
+(*								CheckDivWord	 	 v1.1										*)
+(*									23.07.2015													*)
+(* 							v 1.1 - poprawki edycyjne 											*)
+(*					Funkcja sprawdzaj¹ca dzielenie zmiennej WORD przez 0						*)
+(*					Zapobiega tej sytuacji zmieniajac dzielnik na 1								*)
+(*					Liczba prob w zmiennej dCheckDivWord w Global\Checks....					*)
+(*					Nie nale¿y jej wywo³ywaæ w programie, wykonuje sie w tle					*)
+(*					Uwaga!!!																	*)
+(*					Obciaza system, uzywac tylko w okresie testowania							*)
+(*_______________________________________________________________________________*)
+FUNCTION CheckDivWord: WORD
+VAR_INPUT
+	divisor : WORD;
+END_VAR
+(* @END_DECLARATION := '0' *)
+IF divisor = 0 THEN
+	CheckDivWord := 1;(**)
+	dCheckDivWord := dCheckDivWord + 1;
+ELSE
+	CheckDivWord := divisor;
+END_IF
+END_FUNCTION
+
+
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @PATH := '\/Checks' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+(************************************************************************************************************************)
+(*							Beckhoff Automation Poland											*)
+(*								CheckRangeSigned	 v1.1										*)
+(*									23.07.2015													*)
+(* 							v 1.1 - poprawki edycyjne 											*)
+(*					Funkcja sprawdzaj¹ca zakres liczby znakowej								*)
+(*					Liczba prob w zmiennej dCheckRangeSigned w Global\Checks....				*)
+(*					Nie nale¿y jej wywo³ywaæ w programie, wykonuje sie w tle					*)
+(*					Uwaga!!!																	*)
+(*					Obciaza system, uzywac tylko w okresie testowania							*)
+(*_______________________________________________________________________________*)
+FUNCTION CheckRangeSigned : DINT
+VAR_INPUT
+    value, lower, upper: DINT;
+END_VAR
+VAR
+END_VAR
+(* @END_DECLARATION := '0' *)
+IF (value < lower) THEN
+	dCheckRangeSigned := dCheckRangeSigned + 1;
+	CheckRangeSigned := lower;(**)
+ELSIF(value > upper) THEN
+	dCheckRangeSigned := dCheckRangeSigned + 1;
+	CheckRangeSigned := upper;(**)
+ELSE
+	CheckRangeSigned := value;
+END_IF
+END_FUNCTION
+
+
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @PATH := '\/Checks' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+(************************************************************************************************************************)
+(*							Beckhoff Automation Poland											*)
+(*								CheckRangeUnsigned	 v1.1									*)
+(*									23.07.2015													*)
+(* 							v 1.1 - poprawki edycyjne 											*)
+(*					Funkcja sprawdzaj¹ca zakres liczby bezznakowej							*)
+(*					Liczba prob w zmiennej dCheckRangeUnsigned w Global\Checks....			*)
+(*					Nie nale¿y jej wywo³ywaæ w programie, wykonuje sie w tle					*)
+(*					Uwaga!!!																	*)
+(*					Obciaza system, uzywac tylko w okresie testowania							*)
+(*_______________________________________________________________________________*)
+FUNCTION CheckRangeUnsigned : UDINT
+VAR_INPUT
+    value, lower, upper: UDINT;
+END_VAR
+VAR
+END_VAR
+(* @END_DECLARATION := '0' *)
+IF (value < lower) THEN
+	CheckRangeUnsigned := lower;(**)
+	dCheckRangeUnsigned := dCheckRangeUnsigned + 1;
+ELSIF(value > upper) THEN
+	CheckRangeUnsigned := upper;(**)
+	dCheckRangeUnsigned := dCheckRangeUnsigned + 1;
+ELSE
+	CheckRangeUnsigned := value;
+END_IF
+END_FUNCTION
+
+(* @NESTEDCOMMENTS := 'Yes' *)
+(* @GLOBAL_VARIABLE_LIST := 'Checks' *)
+(* @PATH := '' *)
+(* @OBJECTFLAGS := '0, 8' *)
+(* @SYMFILEFLAGS := '2048' *)
+VAR_GLOBAL PERSISTENT
+	dCheckDivLReal: DINT; 	(*Licznik prob dzielenia LREAL przez 0*)
+	dCheckDivReal: DINT; 	(*Licznik prob dzielenia REAL przez 0*)
+	dCheckDivByte: DINT;	(*Licznik prob dzielenia BYTE przez 0*)
+	dCheckDivWord: DINT;	 (*Licznik prob dzielenia WORD przez 0*)
+	dCheckDivDword: DINT;	(*Licznik prob dzielenia DWORD przez 0*)
+	dCheckDivInt: DINT; 	(*Licznik prob dzielenia Int przez 0*)
+	dCheckDivDInt: DINT;	(*Licznik prob dzielenia Dint przez 0*)
+	dCheckBounds: DINT;	(*Licznik przekroczen zakresu indexow, np. tablic*)
+	dCheckRangeSigned: DINT;	(*Licznik przekroczen  liczby znakowej*)
+	dCheckRangeUnsigned: DINT; (*Licznik przekroczen  liczby bezznakowej*)
+END_VAR
+(* @OBJECT_END := 'Checks' *)
+(* @CONNECTIONS := Checks
+FILENAME : ''
+FILETIME : 0
+EXPORT : 0
+NUMOFCONNECTIONS : 0
+*)
